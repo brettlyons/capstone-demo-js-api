@@ -8,6 +8,9 @@ router.get('/', function(req, res, next) {
 
 router.post('/api/echo', function(req, res, next) {
   console.log("POST RECEIVED REQ.BODY.THINGIE: ", req.body.thingie);
+  if(!req.body.thingie) {
+    res.json({error: "Perhaps you meant { \"thingie\":\"my text\" }"});
+  }
   res.json(req.body.thingie); // from the clj api docs -- "echoes a Thingie from json-body"
 });
 
