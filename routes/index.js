@@ -15,6 +15,7 @@ router.post('/api/echo', function(req, res, next) {
 });
 
 router.get('/api/times/:x/:y', function(req, res, next) {
-  res.json(req.params.x * req.params.y);
+  console.log("THE ROUTE HAS BEEN HIT!!");
+  res.status(200).json(req.params.x * req.params.y);
 });
 module.exports = router;
