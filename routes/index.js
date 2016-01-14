@@ -7,14 +7,18 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/api/echo', function(req, res, next) {
-  console.log("POST RECEIVED REQ.BODY.THINGIE: ", req.body.thingie);
-  if(!req.body.thingie) {
-    res.json({error: "Perhaps you meant { \"thingie\":\"my text\" }"});
-  }
-  res.json(req.body.thingie); // from the clj api docs -- "echoes a Thingie from json-body"
+  console.log("POST RECEIVED REQ.BODY: ", req.body);
+  // if(!req.body) {
+  //   res.json({error: "Perhaps you meant { \"thingie\":\"my text\" }"});
+  // }
+  res.json(req.body); // from the clj api docs -- "echoes a Thingie from json-body"
 });
 
 router.get('/api/times/:x/:y', function(req, res, next) {
+  if(Math.random() * 10 > 8) {
+    console.log("INTENTIONAL ERROR");
+    res.status(404).end();
+  }
   res.status(200).json(req.params.x * req.params.y);
 });
 module.exports = router;
